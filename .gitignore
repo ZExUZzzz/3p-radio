@@ -1,0 +1,12 @@
+# Музыка и радио
+adv/*
+radio/*
+# TOKEN аккаунта Yandex
+/token.txt
+
+# Рабочая среда
+/.idea
+
+# Ридми в docx и txt
+/readme.docx
+/readme.txt
