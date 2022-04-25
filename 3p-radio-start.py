@@ -7,6 +7,42 @@ from radio import Radio # Модуль радио radio.py (должен быт�
 import os # Модуль работы с ОС
 import pyglet # Выполняет роль плеера
 
+
+'''
+#def initialization():
+
+
+if not (os.path.exists('conf.ini')):
+    config_file = open('conf.ini', 'w')
+    config_file.close()
+'''
+with open('conf.ini', 'r+') as file: #Читаем файл
+    lines = file.read().splitlines() # read().splitlines() - чтобы небыло пустых строк
+
+conf_dict = {}
+
+for line in lines: # Проходимся по каждой строчке
+  key,value = line.split('=') # Разделяем ключ от значения через равно (radio = genre:station)
+  conf_dict.update({key:value})	 # Добавляем в словарь
+
+if not ('radio' in conf_dict or 'to_adv' in conf_dict):
+    print('Конфигурация не обнаружена, необходимо выбрать параметры работы радио')
+    sleep(1)
+    print('Введите радиостанцию в виде тип:станция: ')
+    station = input()
+    conf_dict.update()
+else:
+    print('Конфигурация обнаружена, радио:', conf_dict['radio'] + '\n Песен до рекламы', conf_dict['to_adv'])
+
+'''
+conf_dict['radio'] = 'mood:genre'
+conf_dict['to_adv'] = '5'
+with open('conf.ini', 'r+') as file:
+    for key, value in conf_dict.items():
+        file.write(f'{key}= {value}\n')
+'''
+print(conf_dict)
+
 # Создаём папки для радио и рекламы, если они отсутствуют
 if not (os.path.exists('radio')):
     os.mkdir('radio')

@@ -1,8 +1,12 @@
 # Музыка и радио
 adv/*
 radio/*
+
 # TOKEN аккаунта Yandex
 /token.txt
+
+# Конфигурационный файл
+/conf.ini
 
 # Рабочая среда
 /.idea
