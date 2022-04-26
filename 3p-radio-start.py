@@ -297,9 +297,6 @@ _station_id = static_genre
 _station_from = _station.id_for_from
 # Запуск клиента радио
 radio = Radio(client)
-# Получаем первый трек для радио
-print(_station_id)
-print(to_adv)
 
 with open('.\\stations\\' + conf_dict['station'].split(':')[0] + '.lst', 'r',
           encoding='UTF-8') as file:  # Читаем файл
@@ -309,6 +306,7 @@ for line in lines:  # Проходимся по каждой строчке
     key, value = line.split('=')  # Разделяем ключ от значения через равно (radio = genre:station)
     search_station.update({key: value})  # Добавляем в словарь
 
+# Получаем первый трек для радио
 try:
     first_track = radio.start_radio(_station_id, _station_from)
 except:
