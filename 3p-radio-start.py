@@ -322,6 +322,7 @@ while True:
     if (os.path.exists('radio\\curr_track.mp3')):
         if ((adv_count < to_adv) or (len(dict_adv) == 0)):
             os.system("cls")
+            tries = 0
             if is_first_time == False:
                 os.remove('radio\\curr_track.mp3')
                 os.rename('radio\\next_track.mp3', 'radio\\curr_track.mp3')
@@ -342,7 +343,16 @@ while True:
             print('Длительность:', player.source.duration, 'с')
             if not len(dict_adv) == 0: print('До рекламы осталось', to_adv - adv_count, 'песня(ен)')
             adv_count = adv_count + 1
-            next_track = radio.play_next()
+            while tries < 4:
+                tries +-1
+                try:
+                    next_track = radio.play_next()
+                except:
+                    if tries < 4:
+                        continue
+                    else:
+                        next_track = radio.play_next()
+                break
             try_track_dict = next_track
             next_track.download('radio\\next_track.mp3')
             is_first_time = False
