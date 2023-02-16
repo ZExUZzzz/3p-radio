@@ -20,6 +20,8 @@ for line in lines: # Проходимся по каждой строчке
     key,value = line.split('=') # Разделяем ключ от значения через равно (radio = genre:station)
     conf_dict.update({key:value})	 # Добавляем в словарь
 
+skip_mode = 0
+
 station = None
 radio_types = {
     'activity' : 'Занятие',
@@ -233,8 +235,11 @@ def station_select():
                 None
             os.system("cls")
             print('Введено не число или не верное число, 0 - работать с текущими параметрами, 1 - сменить конфигурацию')
-
-station_select()
+if('skip_init' in conf_dict):
+    if(int(conf_dict['skip_init'])==1):
+        skip_mode=1
+if(skip_mode!=1):
+    station_select()
 
 while not ('station' in conf_dict or 'to_adv' in conf_dict):
     temp_conf = open('conf.ini', 'w+')
