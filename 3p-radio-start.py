@@ -328,6 +328,7 @@ while True:
         if ((adv_count < to_adv) or (len(dict_adv) == 0)):
             os.system("cls")
             tries = 0
+            tries2 = 0
             if is_first_time == False:
                 os.remove('radio\\curr_track.mp3')
                 os.rename('radio\\next_track.mp3', 'radio\\curr_track.mp3')
@@ -358,8 +359,19 @@ while True:
                     else:
                         next_track = radio.play_next()
                 break
-            try_track_dict = next_track
-            next_track.download('radio\\next_track.mp3')
+            while tries2 < 4:
+                tries2 +-1
+                try:
+                    try_track_dict = next_track
+                    next_track.download('radio\\next_track.mp3')
+                except:
+                    if tries2 < 4:
+                        next_track = radio.play_next()
+                        continue
+                    else:
+                        try_track_dict = next_track
+                        next_track.download('radio\\next_track.mp3')
+                break
             is_first_time = False
             try:
                 sleep(player.source.duration)
