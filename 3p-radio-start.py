@@ -380,6 +380,8 @@ while True:
         else:
             os.system("cls")
             adv_count = 0
+            tries = 0
+            tries2 = 0
             if to_adv == 0: print('Значение "треков до рекламы" в to_adv.txt установлено на 0. Будет воспроизводиться только реклама')
             try:
                 random_adv = dict_adv[randint(0, len(dict_adv) - 1)]
@@ -393,8 +395,27 @@ while True:
             t = Timer(player.source.duration, player.next_source)
             t.start()
             print('Длительность:', player.source.duration, 'с')
-            next_track = radio.play_next()
-            next_track.download('radio\\next_track.mp3')
+            while tries < 4:
+                tries +-1
+                try:
+                    next_track = radio.play_next()
+                except:
+                    if tries < 4:
+                        continue
+                    else:
+                        next_track = radio.play_next()
+                break
+            while tries2 < 4:
+                tries2 +-1
+                try:
+                    next_track.download('radio\\next_track.mp3')
+                except:
+                    if tries2 < 4:
+                        next_track = radio.play_next()
+                        continue
+                    else:
+                        next_track.download('radio\\next_track.mp3')
+                break
             try:
                 sleep(player.source.duration)
             except AttributeError:

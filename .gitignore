@@ -14,3 +14,5 @@ radio/*
 # Ридми в docx и txt
 /readme.docx
 /readme.txt
+token.txt
+__pycache__/radio.cpython-39.pyc
